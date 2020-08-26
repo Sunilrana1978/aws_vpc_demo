@@ -5,7 +5,7 @@ module "my_vpc" {
   vpc_id = module.my_vpc.vpc_id
   igw_id = module.my_vpc.igw_id
   nats_id = module.my_vpc.nats_id
-  env = "test"
+  env = "prod"
   # pri_subnets_id=module.my_vpc.pri_subnets_id
   # pub_subnets_id=module.my_vpc.pub_subnets_id
   pub_subnet_cidr = ["192.166.1.0/24","192.166.2.0/24","192.166.3.0/24","192.166.4.0/24"] 
