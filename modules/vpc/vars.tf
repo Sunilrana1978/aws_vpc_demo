@@ -20,17 +20,17 @@ variable "vpc_id" {
   description = " vpc id"
 }
 
-variable "pub_subnet_cidr" {
-  type        = list
-  default     = ["10.0.1.0/24","10.0.2.0/24","10.0.3.0/24","10.0.4.0/24"]
-  description = "subnet_cidr_block"
-}
+# variable "pub_subnet_cidr" {
+#   type        = list
+#   default     = ["10.0.1.0/24","10.0.2.0/24","10.0.3.0/24","10.0.4.0/24"]
+#   description = "subnet_cidr_block"
+# }
 
-variable "pri_subnet_cidr" {
-  type        = list
-  default     = ["10.1.1.0/24","10.1.2.0/24","10.1.3.0/24","10.1.4.0/24"]
-  description = "subnet_cidr_block"
-}
+# variable "pri_subnet_cidr" {
+#   type        = list
+#   default     = ["10.1.1.0/24","10.1.2.0/24","10.1.3.0/24","10.1.4.0/24"]
+#   description = "subnet_cidr_block"
+# }
 
 variable "tags" {
   type = map(string)
