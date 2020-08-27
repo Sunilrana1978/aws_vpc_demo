@@ -1,5 +1,5 @@
 resource "aws_vpc" "main" {
-  
+
   cidr_block       = var.vpc_cidr
   instance_tenancy = var.instance_tenancy
 
@@ -7,7 +7,7 @@ resource "aws_vpc" "main" {
   #   Name = "${var.env}-Vpc"
   # }
 
-  tags = merge (
+  tags = merge(
     {
       "Name" = "${var.env}-Vpc"
     },

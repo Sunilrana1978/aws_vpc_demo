@@ -10,8 +10,8 @@ variable "vpc_cidr" {
 }
 
 variable "instance_tenancy" {
-  type        = string
-  default     = "default"
+  type    = string
+  default = "default"
 }
 
 
@@ -43,7 +43,7 @@ variable "tags" {
 }
 
 variable "env" {
-  default = "dev"
+  default     = "dev"
   description = "The dev environment"
 }
 
