@@ -2,9 +2,6 @@ variable "aws_region" {
   default = "us-west-2"
 }
 
-# variable "bucket" {
-#   description = "s3 bucket name"
-# }
 
 variable "vpc_cidr" {
   type        = string
@@ -50,17 +47,4 @@ variable "env" {
   description = "The dev environment"
 }
 
-# variable "azs" {
-#   type        = "list"
-#   default     = ["us-west-2a","us-west-2b","us-west-2c"]
-#   description = "description"
-# }
 
-data "aws_availability_zones" "azs" {
-  state = "available"
-}
-
-# variable "igw" {
-#   type        = string
-#   description = " igw id"
-# }

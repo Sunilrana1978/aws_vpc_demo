@@ -1,8 +1,9 @@
 resource "aws_subnet" "pub_subnets" {
-  count =length(data.aws_availability_zones.azs.names)
-  availability_zone = data.aws_availability_zones.azs.names[count.index]
+  count =local.az_length
+  availability_zone = local.az_names[count.index]
   vpc_id     = var.vpc_id
-  cidr_block = element(var.pub_subnet_cidr,count.index)
+  # cidr_block = element(var.pub_subnet_cidr,count.index)
+  cidr_block = cidrsubnet(var.vpc_cidr, 8, count.index)
 
   tags = merge (
     {
@@ -13,10 +14,11 @@ resource "aws_subnet" "pub_subnets" {
 }
 
 resource "aws_subnet" "pri_subnets" {
-  count =length(data.aws_availability_zones.azs.names)
-  availability_zone = data.aws_availability_zones.azs.names[count.index]
+  count =local.az_length
+  availability_zone = local.az_names[count.index]
   vpc_id     = var.vpc_id
-  cidr_block = element(var.pri_subnet_cidr,count.index)
+  # cidr_block = element(var.pri_subnet_cidr,count.index)
+  cidr_block = cidrsubnet(var.vpc_cidr, 8, count.index + local.az_length)
 
   tags = merge (
     {

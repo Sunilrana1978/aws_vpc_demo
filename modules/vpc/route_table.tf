@@ -13,6 +13,14 @@ resource "aws_route_table" "public_rt" {
     var.tags
   )
 }
+
+# assocate subnets to route tables.
+resource "aws_route_table_association" "public" {
+  count = local.pub_sub_length
+  subnet_id      = local.pub_sub_ids[count.index]
+  route_table_id = aws_route_table.public_rt.id
+}
+
 resource "aws_route_table" "private_rt" {
   vpc_id = var.vpc_id
   route {
@@ -26,14 +34,9 @@ resource "aws_route_table" "private_rt" {
     var.tags
   )
 }
-# assocate subnets to route tables.
-resource "aws_route_table_association" "public" {
-  count = length(var.pub_subnet_cidr)
-  subnet_id      = element(aws_subnet.pub_subnets.*.id, count.index)
-  route_table_id = aws_route_table.public_rt.id
-}
+
 resource "aws_route_table_association" "private" {
-  count = length(var.pri_subnet_cidr)
-  subnet_id      = element(aws_subnet.pri_subnets.*.id, count.index)
+  count = local.pub_sub_length
+  subnet_id      = local.pri_sub_ids[count.index]
   route_table_id = aws_route_table.private_rt.id
 }
