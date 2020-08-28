@@ -4,6 +4,7 @@ resource "aws_subnet" "pub_subnets" {
   vpc_id            = var.vpc_id
   # cidr_block = element(var.pub_subnet_cidr,count.index)
   cidr_block = cidrsubnet(var.vpc_cidr, 8, count.index)
+  map_public_ip_on_launch = true
 
   tags = merge(
     {
