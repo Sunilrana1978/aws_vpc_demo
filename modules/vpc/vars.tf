@@ -1,7 +1,7 @@
+
 variable "aws_region" {
   default = "us-west-2"
 }
-
 
 variable "vpc_cidr" {
   type        = string
@@ -48,3 +48,12 @@ variable "env" {
 }
 
 
+variable "pri_subnets" {
+  type        = list
+  description = "pri_subnets id"
+}
+
+variable "pub_subnets" {
+  type        = list
+  description = "pri_subnets id"
+}

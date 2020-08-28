@@ -30,3 +30,13 @@ resource "aws_subnet" "pri_subnets" {
 }
 
 
+output "pri_subnets" {
+  value       = aws_subnet.pri_subnets.*.id
+  description = "pri_subnets id"
+}
+
+
+output "pub_subnets" {
+  value       = aws_subnet.pub_subnets.*.id
+  description = "pub_subnets id"
+}
