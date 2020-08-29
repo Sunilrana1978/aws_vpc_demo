@@ -4,7 +4,8 @@ resource "aws_vpc_endpoint" "s3" {
 }
 
 resource "aws_vpc_endpoint_route_table_association" "Private_route_table_association" {
-  route_table_id  = aws_route_table.private_rt.id
+  count             = local.az_length
+  route_table_id  = aws_route_table.private_rt.*.id[count.index]
   vpc_endpoint_id = aws_vpc_endpoint.s3.id
 }
 

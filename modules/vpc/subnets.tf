@@ -8,7 +8,7 @@ resource "aws_subnet" "pub_subnets" {
 
   tags = merge(
     {
-      "Name" = "${var.env}-public-subnet-${count.index + 1}"
+      "Name" = "${var.env}-public-subnet-${local.az_names[count.index]}"
     },
     var.tags
   )
@@ -19,17 +19,16 @@ resource "aws_subnet" "pri_subnets" {
   availability_zone = local.az_names[count.index]
   vpc_id            = var.vpc_id
   # cidr_block = element(var.pri_subnet_cidr,count.index)
-  cidr_block = cidrsubnet(var.vpc_cidr, 8, count.index + local.az_length)
+  cidr_block = cidrsubnet(var.vpc_cidr, 4, count.index + local.az_length)
 
   tags = merge(
     {
-      "Name" = "${var.env}-private-subnet-${count.index + 1}"
+      "Name" = "${var.env}-private-subnet-${local.az_names[count.index]}"
     },
     var.tags
   )
 
 }
-
 
 output "pri_subnets" {
   value       = aws_subnet.pri_subnets.*.id
